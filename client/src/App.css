@@ -1,0 +1,14 @@
+body{
+    margin: 0;
+    padding:0;
+}
+.content {
+    display: block;
+    border-radius: 7px;
+    white-space: normal;
+    background-color: rgb(255, 255, 255);
+    background: repeating-linear-gradient(transparent, transparent 2px, rgb(255, 255, 255) 2px, rgb(255, 255, 255) 22px, transparent 22px, transparent 23px, rgb(255, 255, 255) 23px, rgb(255, 255, 255) 43px),
+              repeating-linear-gradient(0.25turn, transparent, transparent 2px, rgb(255, 255, 255) 2px, rgb(255, 255, 255) 22px, transparent 22px, transparent 23px, rgb(255, 255, 255) 23px, rgb(255, 255, 255) 43px);
+
+
+}
