@@ -39,7 +39,7 @@ const Confirm =()=>{
                     <label htmlFor="code">Confirmation Code
                         <input value={code} onChange={(event) =>{setCode(event.target.value);console.log("Confirm",event.target.value);}}></input>
                     </label>
-                    <button type="submit">Confirm Signup</button>
+                    <button class="submit" type="submit">Confirm Signup</button>
                 </form> 
             </FormContainer>
         </BackgroundDiv>
