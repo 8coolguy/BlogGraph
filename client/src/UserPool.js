@@ -1,7 +1,7 @@
 import {CognitoUserPool} from "amazon-cognito-identity-js";
-
+require('dotenv').config()
 const poolData ={
-    UserPoolId:"us-west-1_XY5hneouc",
-    ClientId:"3v6s1tl41ghgb6ugcddl4ql976",
+    UserPoolId:process.env.UserPoolId,
+    ClientId:process.env.ClientId,
 }
 export default new CognitoUserPool(poolData);
