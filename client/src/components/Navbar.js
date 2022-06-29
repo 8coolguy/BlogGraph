@@ -2,6 +2,7 @@ import React from 'react';
 import UserPool from "../UserPool";
 import {NavbarContainer,LeftContainer,RightContainer,NavbarInner,NavbarLink,NavLink,Titled} from '../Styles/Navbar.Style';
 import Status from "./Status";
+import BlogGraph from '../BlogGraph.png';
 
 const Navbar = () => {
   var status =false;
@@ -33,7 +34,10 @@ const Navbar = () => {
               
           </LeftContainer>
           <RightContainer>
-              <h1>IMPORT LOGO HERE</h1>
+            <div>
+              
+              <img style={{height:"5pc",width:"12pc"}}src={BlogGraph}/>
+            </div>
           </RightContainer>
       </NavbarInner>
     </NavbarContainer>
