@@ -3,7 +3,8 @@ const mongoose =require('mongoose');
 const bodyParser =require('body-parser');
 const fileUpload =require("express-fileupload");
 const morgan =require("morgan");
-const cors =require("cors")
+const cors =require("cors");
+const path = require('path');
 
 const app =express();
 const users = require("./routes/api/users");
@@ -31,6 +32,11 @@ mongoose.connect(db)
 app.use('/api/users', users);
 app.use('/api/blogs', blogs);
 
+app.use(express.static(path.join(__dirname+'/client/', 'build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname+'/client/', 'build', 'index.html'));
+});
 
 
 const port = process.env.PORT || 8000;
