@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {BackgroundDiv} from "../Styles/Style";
+import {FormContainer} from "../Styles/Form.Style";
 import UserPool from "../UserPool";
 import  {CognitoUser} from 'amazon-cognito-identity-js';
 import {useParams,useNavigate} from "react-router-dom";
@@ -32,12 +33,15 @@ const Confirm =()=>{
     
     return(
         <BackgroundDiv>
-            <form onSubmit={onSubmit}>
-                <label htmlFor="code">Confirmation Code
-                    <input value={code} onChange={(event) =>{setCode(event.target.value);console.log("Confirm",event.target.value);}}></input>
-                </label>
-                <button type="submit">Confirm Signup</button>
-            </form> 
+            <h2 style={{padding:0,textAlign: "center",margin:0}}>Code is sent to your email.</h2>
+            <FormContainer>
+                <form onSubmit={onSubmit}>
+                    <label htmlFor="code">Confirmation Code
+                        <input value={code} onChange={(event) =>{setCode(event.target.value);console.log("Confirm",event.target.value);}}></input>
+                    </label>
+                    <button type="submit">Confirm Signup</button>
+                </form> 
+            </FormContainer>
         </BackgroundDiv>
     )
 }

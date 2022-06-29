@@ -8,10 +8,14 @@ const User =require('../../models/User');
 //access should be private
 router.get('/search/:query',(req,res) => {
     const query = req.params.query;
+    
     User.find({userName:{"$regex":query}})
         .find({total_blogs:{ $gte: 1 }})
         .sort({total_blogs:-1})
         .then(users => res.json(users))
+
+    
+    
 });
 //@route GET api/users
 //gets all the users

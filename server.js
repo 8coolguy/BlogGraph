@@ -31,7 +31,7 @@ mongoose.connect(db)
 
 app.use('/api/users', users);
 app.use('/api/blogs', blogs);
-
+console.log("Server Build path",path.join(__dirname+'/client/', 'build'))
 app.use(express.static(path.join(__dirname+'/client/', 'build')));
 
 app.get('/*', function (req, res) {

@@ -10,12 +10,14 @@ const Search = () =>{
     const [query,setQuery]=useState("");
     const [users,setUsers]=useState([]);
     useEffect(() => {
-        searchUsers(query)
-            .then(res => {
-                setUsers(res.data);
-                console.log(res.data);
-            })
-            .catch(err => console.log("Explore", err.name));
+        if(query != ""){
+            searchUsers(query)
+                .then(res => {
+                    setUsers(res.data);
+                    console.log("Search:",res);
+                })
+                .catch(err => console.log("Search", err.name));
+        }
       
     }, [query])
     
@@ -27,7 +29,11 @@ const Search = () =>{
                 <input value={query} onChange={(event) =>{setQuery(event.target.value);console.log("Search",event.target.value);}}></input>
             </h1>
             <h2 style={{padding:0,textAlign: "center",margin:0, color:"grey"}}>{users.length} results queried</h2>
-            {users.map((user) => <GraphContainer> <Graph userName={user.userName}/></GraphContainer>) }
+            {
+                users.length !=0 ?
+                    users.map((user) => (<GraphContainer> <Graph userName={user.userName}/></GraphContainer>)):<></>
+                
+            }
         </BackgroundDiv>
     )      
 
