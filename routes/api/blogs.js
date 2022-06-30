@@ -109,42 +109,63 @@ router.post('/',(req,res) =>{
             if(err){
                 console.log("Post Blog",err)
             }else{
-                uploadFile(article_file_path,req.body.title +".md").
-                    then(result=>{console.log("S3",result)});
+                uploadFile(article_file_path,req.body.title +".md")
+                    .then(result=>{
+                        console.log("S3",result);
+                        if(req.files.thumbnail_file){
+                            //need to create a unique file name
+                            thumbnail_path = process.cwd() + '/Static/thumbnails/' + req.body.title+".png";
+                            
+                            req.files.thumbnail_file.mv(thumbnail_path,err2=>{
+                                if(err2){
+                                    console.log("Post Blog",err2)
+                                }
+                                else{
+                                    uploadImage(thumbnail_path,req.body.title +".png")
+                                        .then(result2=>{
+                                            console.log("S3",result2);
+                                            thumbnail_name=req.body.title+".png";
+                                            const newBlog = new Blog({
+                                                title:req.body.title,
+                                                user:req.body.user,
+                                                related_title:req.body.related_title,
+                                                article_file_path:article_file_name,
+                                                thumbnail_file_path:thumbnail_name,
+                                            });
+                                            console.log("Post Blog",newBlog);
+                                            newBlog.save()
+                                                .then(blog => res.json(blog))
+                                                .catch(err => res.status(404).json({success:false}));
+                                        });
+                                }
+                            });
+                            
+                        }
+                        else{
+                            const newBlog = new Blog({
+                                title:req.body.title,
+                                user:req.body.user,
+                                related_title:req.body.related_title,
+                                article_file_path:article_file_name,
+                                thumbnail_file_path:thumbnail_name,
+                            });
+                            console.log("Post Blog",newBlog);
+                            newBlog.save()
+                                .then(blog => res.json(blog))
+                                .catch(err => res.status(404).json({success:false})); 
+                        }
+                    });
+                    
   
             }
         });
-        
-        if(req.files.thumbnail_file){
-            //need to create a unique file name
-            thumbnail_path = process.cwd() + '/Static/thumbnails/' + req.body.title+".png";
-            thumbnail_name=req.body.title+".png";
-            req.files.thumbnail_file.mv(thumbnail_path,err=>{
-                if(err){
-                    console.log("Post Blog",err)
-                }
-                else{
-                    uploadImage(thumbnail_path,req.body.title +".png")
-                        .then(result=>{console.log("S3",result)});
-                }
-            });
-            
-        }
     }catch(err){
         return res.status(500).json({success:false,reason:"File upload"});
     }
     
-    const newBlog = new Blog({
-        title:req.body.title,
-        user:req.body.user,
-        related_title:req.body.related_title,
-        article_file_path:article_file_name,
-        thumbnail_file_path:thumbnail_name,
-    });
-    console.log("Post Blog",newBlog);
-    newBlog.save()
-        .then(blog => res.json(blog))
-        .catch(err => res.status(404).json({success:false}));
+    
+    
+    
 });
 router.delete('/:id',(req,res) => {
     Blog.findById(req.params.id)

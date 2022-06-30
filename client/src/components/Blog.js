@@ -12,7 +12,7 @@ const Blog =() =>{
     const navigate =useNavigate();
     const [blog, setBlog]=useState({});
     const [md, setMd]=useState({text:""});
-    const user =UserPool.getCurrentUser();
+    const user= UserPool.getCurrentUser()? UserPool.getCurrentUser():{"username":"____"};
     useEffect(() => {
         getBlogTitle(title)
           .then(res=> {setBlog(res.data[0]);console.log("Blog",res);})
