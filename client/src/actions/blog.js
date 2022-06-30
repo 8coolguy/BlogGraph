@@ -31,12 +31,14 @@ const getBlogFile= (path) =>{
   });        
 }
 const getBlogImage= (path) =>{
+  
   var encode =btoa(path);
   console.log("getBlogImage",encode)
   return axios({
       method: "get",
       url: ("/api/blogs/image/"+encode),
-  });        
+  });
+        
 }
 const postBlog= (props) =>{
     
@@ -46,8 +48,6 @@ const postBlog= (props) =>{
     data.append('article_file', props.article_file);
     data.append('user', props.user);
     data.append('thumbnail_file', props.thumbnail_file);
-    console.log(props.thumbnail_file);
-    console.log(Array.from(data));
     var config = {
       method: 'post',
       url: '/api/blogs',

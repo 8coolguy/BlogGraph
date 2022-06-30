@@ -10,6 +10,8 @@ const app =express();
 const users = require("./routes/api/users");
 const blogs =require("./routes/api/blogs");
 
+
+
 //bodyparser middleware
 app.use(bodyParser.json());
 
@@ -29,15 +31,23 @@ mongoose.connect(db)
     .then(()=>console.log("Connected..."))
     .catch(err => console.log(err));
 
+
+
+
+
+
+
+
 app.use('/api/users', users);
 app.use('/api/blogs', blogs);
 console.log("Server Build path",path.join(__dirname+'/client/', 'build'))
 app.use(express.static(path.join(__dirname+'/client/', 'build')));
 
+
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname+'/client/', 'build', 'index.html'));
 });
-
+//app.use(express.limit('15mb'));
 
 const port = process.env.PORT || 8000;
 
