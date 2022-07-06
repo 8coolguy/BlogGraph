@@ -20,6 +20,7 @@ const Root =()=>{
     <BackgroundDiv>
       <h1 style={{padding:0,textAlign: "center",margin:0}}>Welcome to BlogGraph
         <h2>Blogs are visualized as Graphs</h2>
+        <p>This is a blog app that visualizes your blogs as nodes and related blogs are connected by edges. The Graph helps relate each blog with another blog similar to a recommendation system. This web app was built with mongodb,express,react and nodejs. I also used AWS Cognito and S3 for the login system and file storage. The graphs were built with react flow. There is an Explore page that shows all the top BlogGraphs. You can also search for BlogGraphs in the search page by user.</p>
       </h1>
     </BackgroundDiv>
 
@@ -56,11 +57,3 @@ function App() {
 }
 
 export default App;
-/*
-<Account>
-      <Navbar/>
-      <Status/>
-      <Signup/>
-      <Login/>
-    </Account>
-*/

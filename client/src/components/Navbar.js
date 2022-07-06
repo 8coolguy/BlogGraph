@@ -19,6 +19,7 @@ const Navbar = () => {
       <NavbarInner>
           <LeftContainer>
               <NavbarLink>
+                <NavLink to="/">About</NavLink>
                 {!status ?
                   <NavLink to="/signup">Sign Up</NavLink> 
                   :

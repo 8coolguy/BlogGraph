@@ -22,7 +22,7 @@ const Explore = () =>{
     return(
         <BackgroundDiv>
             <h1 style={{padding:0,textAlign: "center",margin:0}}>Explore top BlogGraphs</h1>
-            {users.map((user) => <GraphContainer> <Graph userName={user.userName}/></GraphContainer>) }
+            {users.map((user) => <div> <Graph userName={user.userName}/></div>) }
         </BackgroundDiv>
     )      
 
